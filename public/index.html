@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de evaluación Socket</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- CDN para socket.io cliente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+</head>
+<body>
+    <!-- Panel de bienvenida 🚪 -->
+   <!-- Panel de bienvenida mejorado 🚪 -->
+<div id="panel-bienvenida">
+    <h2>Práctica de evaluación usando Sockets de comunicación</h2>
+    
+    <!-- 🎭 Selector de foto de perfil / Avatar -->
+    <p style="color: #00f0ff; margin-bottom: 10px; font-size: 14px;">Selecciona tu avatar:</p>
+    <div id="selector-avatar" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 18px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" class="avatar-opcion seleccionada" onclick="seleccionarAvatar(this)" alt="Avatar 1">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png" class="avatar-opcion" onclick="seleccionarAvatar(this)" alt="Avatar 2">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" class="avatar-opcion" onclick="seleccionarAvatar(this)" alt="Avatar 3">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png" class="avatar-opcion" onclick="seleccionarAvatar(this)" alt="Avatar 4">
+    </div>
+
+    <!-- Campo de nombre con evento Keypress para detectar "Enter" ⌨️ -->
+    <input id="persona" type="text" placeholder="Ingresa tu nombre" onkeypress="detectarEnterBienvenida(event)">
+    <button id="ingresar" onclick="ingresarAlChat()">Ingresar al chat</button>
+</div>
+
+    <!-- Panel principal del chat 💬 -->
+    <div id="app-chat" style="display:none;">
+        <h2>Práctica de evaluación 1er. parcial</h2>
+        <h2 class="nube box">Chat con socket</h2>
+
+        <!-- 🟢 Lista de usuarios conectados -->
+        <div id="contenedor-usuarios" style="margin-bottom: 10px; color: #00f0ff; font-size: 13px; text-align: center;">
+            🟢 <strong>Conectados:</strong> <span id="lista-usuarios">Cargando...</span>
+        </div>
+
+        <!-- 🚪 Botón para salir del chat -->
+    <button id="btn-salir" onclick="salirDelChat()" style="background-color: #ff4d4d; color: white; border: none; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">
+        🚪 Salir del chat
+    </button>
+
+        <div id="ventana-mensajes">
+            <div id="output"></div>
+            <div id="escribiendo-mensaje"></div>
+        </div>
+
+        <input id="usuario" type="text" placeholder="Tu nombre">
+        <input id="mensaje" type="text" placeholder="Ingresa un mensaje">
+        
+        <!-- 📎 Selector de archivo estilizado -->
+        <div class="contenedor-archivo">
+            <input type="file" id="archivo" accept="image/*,video/*,application/*" style="display: none;">
+            <label for="archivo" class="btn-archivo">
+                📁 Adjuntar archivo
+            </label>
+            <span id="nombre-archivo">Ningún archivo seleccionado</span>
+        </div>
+
+        <button id="enviar">Enviar</button>
+    </div>
+
+    <!-- 🔊 Etiqueta de audio -->
+    <audio id="sonido-notificacion" src="notificacion.mp3" preload="auto"></audio>
+
+    <!-- 📜 Script principal -->
+    <script src="/chat.js"></script>
+</body>
+</html>
